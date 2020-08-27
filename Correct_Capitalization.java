@@ -4,57 +4,34 @@ public class Correct_Capitalization {
 
 	public static void main(String[] args) {
 		
-		String input = "USA";
-		Boolean result = correct_capitalization(input);
+		String word = "USA";
+		Boolean result = correct_capitalization(word);
 		System.out.println(result);
 		
 	}
-	
-	// Time Complexity -> O(N) (Linear Time)
-	// Space Complexity - O(1) (constant space)
 
-	private static Boolean correct_capitalization(String input) {
+	private static Boolean correct_capitalization(String word) {
 		
-		int k = 0;
+	int n = word.length();
+        if (n == 1) {
+            return true;
+        }
 		
-		if(Character.isUpperCase(input.charAt(k))) {
-			k += 1;
-				if(Character.isUpperCase(input.charAt(k))) {
-					while(k < input.length() - 1) {
-						if(Character.isUpperCase(input.charAt(k + 1))) {
-							k++;
-						}
-						else {
-							return false;
-						}
-					}
-				}
-				else if(Character.isLowerCase(input.charAt(k))) {
-					while(k < input.length() - 1) {
-						if(Character.isLowerCase(input.charAt(k + 1))) {
-							k++;
-						}
-						else {
-							return false;
-						}
-					}
-				}
-			
-			return true;
-		}
-		else {
-			while(k < input.length() - 1) {
-				if(Character.isLowerCase(input.charAt(k + 1))) {
-					k++;
-				}
-				else {
-					return false;
-				}
-			}
-			return true;
-		}
-	
-	}
+        if (Character.isUpperCase(word.charAt(0)) && Character.isUpperCase(word.charAt(1))) {
+            for (int i = 2; i < n; i++) {
+                if (Character.isLowerCase(word.charAt(i))) {
+                    return false;
+                }
+            }
+        } else {
+            for (int i = 1; i < n; i++) {
+                if (Character.isUpperCase(word.charAt(i))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 		
 }
 	
